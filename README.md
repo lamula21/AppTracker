@@ -33,7 +33,7 @@
   - [💭 Possible Names](#-possible-names)
   - [🦸🏻‍♂️ Inspiration](#️-inspiration)
   - [🤷🏻‍♂️ What it does?](#️-what-it-does)
-  - [🔨How we built it?](#how-we-built-it)
+  - [🔨 How we built it?](#-how-we-built-it)
   - [💪 Challenges we ran into](#-challenges-we-ran-into)
   - [🎊 Accomplishments that we're proud of](#-accomplishments-that-were-proud-of)
   - [📖 What we learned](#-what-we-learned)
@@ -62,7 +62,7 @@ We are trying to automate the process of checking for updates on submitted inter
 <br/>
 <br/>
 
-## 🔨How we built it?
+## 🔨 How we built it?
 
 We used HTML/CSS/JavaScript to build the main page of the appplication where all the data is entered and stored. We used Selenium (it's a software that automates browsers) to get to the webpage/webpages entered by the user and we used BeautifulSoup to extract text from the webpage. We integrated Twilio into our code so that the user gets an SMS update each time something (i.e., the status of an application) gets updated. We connected it all to the back-end Python script that runs the Selenium and Twilio code when required.
 <br/>
