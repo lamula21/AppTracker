@@ -1,7 +1,7 @@
 
 <div align="center">
 	<a href=""> 
-		<img height="200" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
+		<img height="300" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
 	</a>
 		<h3>AppTracker</h3>
 		<p align="center">
