@@ -1,10 +1,13 @@
 
+![GitHub contributors](https://img.shields.io/github/contributors/lamula21/AppTracker?style=for-the-badge) ![GitHub Repo stars](https://img.shields.io/github/stars/lamula21/AppTracker?style=for-the-badge&color=yellow) ![GitHub forks](https://img.shields.io/github/forks/lamula21/AppTracker?style=for-the-badge) ![GitHub issues](https://img.shields.io/github/issues-raw/lamula21/AppTracker?style=for-the-badge&color=blueviolet) ![GitHub top language](https://img.shields.io/github/languages/top/lamula21/AppTracker?style=for-the-badge) 
+![GitHub repo size](https://img.shields.io/github/repo-size/lamula21/AppTracker) ![GitHub repo file count](https://img.shields.io/github/directory-file-count/lamula21/AppTracker) ![GitHub all releases](https://img.shields.io/github/downloads/lamula21/AppTracker/total) ![GitHub last commit](https://img.shields.io/github/last-commit/lamula21/AppTracker)
+
 <div align='center'>
  <a href="https://github.com/lamula21/AppTracker"> 
    <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
   </a>
   
-  <h1>AppTracker</h1>
+  <h1><u>AppTracker</u></h1>
 
  <p align="center">
 	Automates the process to check for updates on internship applications. <br/>
@@ -82,3 +85,5 @@ We want to expand it to parse actual applications becuase this is a software tha
 -   [selenium](https://devpost.com/software/built-with/selenium)
 -   [twilio](https://devpost.com/software/built-with/twilio)
 
+
+<!-- Badges: https://shields.io/ -- >
