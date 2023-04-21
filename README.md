@@ -1,6 +1,6 @@
 
 <div align="center">
-	<a href=""> 
+	<a href="https://github.com/lamula21/AppTracker"> 
 		<img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
 	</a>
 	
@@ -10,16 +10,9 @@
 			Automates the process to check for updates on internship applications. <br>
 			🎊 <i>A pretty nice way to store your information</i> 🎊
 	</p>
-		
-	<p> 
-			<strong>Follow Us:</strong>
-			<br>
-			<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
-			<br>
-			<strong>Dev</strong> Henry: <a href="https://github.com/ktran123">github.com/ktran123</a>
-			<br>
-			<strong>Dev</strong> Jose: <a href="https://github.com/lamula21">github.com/lamula21</a>
-	</p>
+
+	<sup>Click :star: if you liked the project.</sup>
+	
 </div>
 
 ---
