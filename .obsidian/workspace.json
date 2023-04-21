@@ -10,9 +10,15 @@
           {
             "id": "94b9cdf2a69c2e00",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
             }
           }
         ]
@@ -81,6 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +126,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "README.md"
+              }
             }
           },
           {
@@ -149,13 +159,13 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "da0f3d13dd5ff4d6",
+  "active": "94b9cdf2a69c2e00",
   "lastOpenFiles": [
+    "Untitled.md",
     "README.md",
     "AppTracker",
     "readme-example.md",
     "Assets/mern.gif",
-    "Untitled.md",
     "Assets",
     "Templates/example-readme.md",
     "Ocaml/OCAML OPSEM.md",

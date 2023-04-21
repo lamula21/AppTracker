@@ -1,6 +1,7 @@
+
 <div align="center">
 	<a href=""> 
-		<img height="60" src="https://github.com">
+		<img height="60" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
 	</a>
 		<h3>AppTracker</h3>
 		<p align="center">
@@ -11,10 +12,10 @@
 # Table of Contents
 - [Index](#table-of-contents)
 	- [Inspiration](#possible-names)
-	- [What it does?](what-it-does)
+	- [What it does?](#what-it-does)
 	- [How we built it?](#how-we-built-it)
 	- [Challenges we ran into](#challenges-we-ran-into)
-	- [Accomplishments that we're proud of](#accomplishments that we're proud of)
+	- [Accomplishments that we're proud of](#accomplishments-that-we're-proud-of)
 	- [What we learned](#what-we-learned)
 	- [What's next for ApplicationTracker](#what's-next-for-applicationtracker)
 	- [Built with](#built-with)
@@ -22,12 +23,12 @@
 
 ## Possible Names
 
-- TerpTracker
-- InternTerp: terp and inter, easy to remember
-- TerpVault: app secure to store all of ur internship app info, like a vault
-- TerpEase: easy to manage internship applications
-- TerpHub
-- InternHub
+- **TerpTracker**
+- **InternTerp**: Terp and inter, easy to remember
+- **TerpVault**: App secure to store all of ur internship app info, like a vault
+- **TerpEase**: Easy to manage internship applications
+- **TerpHub**
+- **InternHub**
 
 ## Inspiration
 
