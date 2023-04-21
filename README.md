@@ -4,8 +4,7 @@
 		<img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
 	</a>
 	
-	<h3> AppTracker </h3>
-		hello
+	hello
 </div>
 
 
