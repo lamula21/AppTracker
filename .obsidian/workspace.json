@@ -20,8 +20,21 @@
               },
               "pinned": true
             }
+          },
+          {
+            "id": "084ae33743093c22",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -159,7 +172,7 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "94b9cdf2a69c2e00",
+  "active": "084ae33743093c22",
   "lastOpenFiles": [
     "Untitled.md",
     "README.md",

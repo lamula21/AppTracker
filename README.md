@@ -1,24 +1,24 @@
 
 <div align="center">
 	<a href=""> 
-		<img height="300" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
+		<img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
 	</a>
 		<h3>AppTracker</h3>
 		<p align="center">
 			Automates the process to check for updates on internship applications. <br>
-			A pretty nice way to store your information.
+			<i>A pretty nice way to store your information.</i>
 		</p>
 </div>
 
 # Table of Contents
 - [Index](#table-of-contents)
-	- [Inspiration](#possible-names)
+	- [Inspiration](#inspiration)
 	- [What it does?](#what-it-does)
 	- [How we built it?](#how-we-built-it)
 	- [Challenges we ran into](#challenges-we-ran-into)
-	- [Accomplishments that we're proud of](#accomplishments-that-we're-proud-of)
+	- [Accomplishments that we're proud of](#accomplishments-that-were-proud-of)
 	- [What we learned](#what-we-learned)
-	- [What's next for ApplicationTracker](#what's-next-for-applicationtracker)
+	- [What's next for ApplicationTracker](#whats-next-for-apptracker)
 	- [Built with](#built-with)
 
 
