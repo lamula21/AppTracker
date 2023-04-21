@@ -22,7 +22,10 @@
 
 
 <div align='center'>
-  <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
+ <a href="https://github.com/lamula21/AppTracker"> 
+   <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
+  </a>
+  
   <h1>AppTracker</h1>
 
  <p align="center">
