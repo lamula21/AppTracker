@@ -9,7 +9,7 @@
 			🎊 <i>A pretty nice way to store your information</i> 🎊
 		</p>
 
-		<p> 
+		<p align="center"> 
 			<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
 			<br>
 			<strong>Dev</strong> Henry: <a href="https://github.com/ktran123">github.com/ktran123</a>
