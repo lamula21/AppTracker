@@ -12,8 +12,18 @@
 	</p>
 
 	<sup>Click :star: if you liked the project.</sup>
-	
+		
+	<p> 
+			<strong>Follow Us:</strong>
+			<br>
+			<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
+			<br>
+			<strong>Dev</strong> Henry: <a href="https://github.com/ktran123">github.com/ktran123</a>
+			<br>
+			<strong>Dev</strong> Jose: <a href="https://github.com/lamula21">github.com/lamula21</a>
+	</p>
 </div>
+
 
 ---
 
