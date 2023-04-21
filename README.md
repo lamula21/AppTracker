@@ -4,7 +4,7 @@
 
 <div align='center'>
  <a href="https://github.com/lamula21/AppTracker"> 
-   <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
+   <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif" style="border: 1px solid black; border-radius: 10px">
   </a>
   
   <h1><u>AppTracker</u></h1>
