@@ -2,12 +2,13 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/lamula21/AppTracker?style=for-the-badge) ![GitHub Repo stars](https://img.shields.io/github/stars/lamula21/AppTracker?style=for-the-badge&color=yellow) ![GitHub forks](https://img.shields.io/github/forks/lamula21/AppTracker?style=for-the-badge) ![GitHub issues](https://img.shields.io/github/issues-raw/lamula21/AppTracker?style=for-the-badge&color=blueviolet) ![GitHub top language](https://img.shields.io/github/languages/top/lamula21/AppTracker?style=for-the-badge) 
 <br/>![GitHub repo size](https://img.shields.io/github/repo-size/lamula21/AppTracker) ![GitHub repo file count](https://img.shields.io/github/directory-file-count/lamula21/AppTracker) ![GitHub all releases](https://img.shields.io/github/downloads/lamula21/AppTracker/total) ![GitHub last commit](https://img.shields.io/github/last-commit/lamula21/AppTracker)
 
+
 <div align='center'>
  <a href="https://github.com/lamula21/AppTracker"> 
-   <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif" style="border: 1px solid black; border-radius: 10px">
+   <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
   </a>
   
-  <h1><u>AppTracker</u></h1>
+  <h1>AppTracker</h1>
 
  <p align="center">
 	Automates the process to check for updates on internship applications. <br/>
@@ -28,15 +29,16 @@
 ---
 
 # Table of Contents
-- [Index](#table-of-contents)
-	- [Inspiration](#%EF%B8%8F-inspiration)
-	- [What it does?](#%EF%B8%8F-what-it-does)
-	- [How we built it?](#how-we-built-it)
-	- [Challenges we ran into](#-challenges-we-ran-into)
-	- [Accomplishments that we're proud of](#-accomplishments-that-were-proud-of)
-	- [What we learned](#-what-we-learned)
-	- [What's next for ApplicationTracker](#%EF%B8%8F-whats-next-for-apptracker)
-	- [Built with](#%EF%B8%8F-built-with)
+- [Table of Contents](#table-of-contents)
+  - [💭 Possible Names](#-possible-names)
+  - [🦸🏻‍♂️ Inspiration](#️-inspiration)
+  - [🤷🏻‍♂️ What it does?](#️-what-it-does)
+  - [🔨How we built it?](#how-we-built-it)
+  - [💪 Challenges we ran into](#-challenges-we-ran-into)
+  - [🎊 Accomplishments that we're proud of](#-accomplishments-that-were-proud-of)
+  - [📖 What we learned](#-what-we-learned)
+  - [➡️ What's next for AppTracker](#️-whats-next-for-apptracker)
+  - [⚙️ Built With](#️-built-with)
 
 
 ## 💭 Possible Names
