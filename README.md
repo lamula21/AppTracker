@@ -6,14 +6,7 @@
 		<h3 style="font-size:30px"><u>AppTracker</u></h3>
 		
 		<br/>
-		
-		<p align="center"> 
-			<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
-			<br/>
-			<strong>Dev</strong> Henry: <a href="https://github.com/ktran123">github.com/ktran123</a>
-			<br/>
-			<strong>Dev</strong> Jose: <a href="https://github.com/lamula21">github.com/lamula21</a>
-		</p>
+		hello
 </div>
 
 
