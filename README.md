@@ -25,9 +25,14 @@
   <img height="60" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/539px-React-icon.svg.png">
   <h1>Preguntas de entrevista para React</h1>
 
+ <p align="center">
+	Automates the process to check for updates on internship applications. <br/>
+	 <i>A pretty nice way to store your information</i>	
+ </p>
+
   <i>De cero a experto. Con respuestas detalladas en Español 🇪🇸</i>
 
-  <sup>Deja tu :star: si te gusta el proyecto.</sup>
+  <sup>Click :star: if you liked the project.</sup>
 
   <p align="center"> 
 	<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
