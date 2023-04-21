@@ -3,9 +3,8 @@
 	<a href="https://github.com/lamula21/AppTracker"> 
 		<img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
 	</a>
-		<h3 style="font-size:30px"><u>AppTracker</u></h3>
-		
-		<br/>
+	
+	<h3><u>AppTracker</u></h3>
 		hello
 </div>
 
