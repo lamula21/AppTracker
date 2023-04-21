@@ -5,7 +5,8 @@
 	</a>
 		<h3>AppTracker</h3>
 		<p align="center">
-			Automates the process to check for updates on internship applications. Also provides a nice way to store the information
+			Automates the process to check for updates on internship applications. <br>
+			A pretty nice way to store your information.
 		</p>
 </div>
 
