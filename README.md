@@ -3,12 +3,27 @@
 	<a href=""> 
 		<img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
 	</a>
-		<h3 style="32px"><u>AppTracker</u></h3>
+		<h3 style="font-size:30px"><u>AppTracker</u></h3>
 		<p align="center">
 			Automates the process to check for updates on internship applications. <br>
-			<i>A pretty nice way to store your information.</i>
+			🎊 <i>A pretty nice way to store your information</i> 🎊
+		</p>
+
+		 <sup>Click :star: if you liked the project.</sup>
+
+		
+		<p> 
+			<strong>Follow Us:</strong>
+			<br>
+			<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
+			<br>
+			<strong>Dev</strong> Henry: <a href="https://github.com/ktran123">github.com/ktran123</a>
+			<br>
+			<strong>Dev</strong> Jose: <a href="https://github.com/lamula21">github.com/lamula21</a>
 		</p>
 </div>
+
+---
 
 # Table of Contents
 - [Index](#table-of-contents)
