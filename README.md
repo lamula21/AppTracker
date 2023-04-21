@@ -26,14 +26,14 @@
 
 # Table of Contents
 - [Index](#table-of-contents)
-	- [Inspiration](#inspiration)
-	- [What it does?](#what-it-does)
+	- [Inspiration](#%EF%B8%8F-inspiration)
+	- [What it does?](#%EF%B8%8F-what-it-does)
 	- [How we built it?](#how-we-built-it)
-	- [Challenges we ran into](#challenges-we-ran-into)
-	- [Accomplishments that we're proud of](#accomplishments-that-were-proud-of)
-	- [What we learned](#what-we-learned)
-	- [What's next for ApplicationTracker](#whats-next-for-apptracker)
-	- [Built with](#built-with)
+	- [Challenges we ran into](#-challenges-we-ran-into)
+	- [Accomplishments that we're proud of](#-accomplishments-that-were-proud-of)
+	- [What we learned](#-what-we-learned)
+	- [What's next for ApplicationTracker](#%EF%B8%8F-whats-next-for-apptracker)
+	- [Built with](#%EF%B8%8F-built-with)
 
 
 ## 💭 Possible Names
