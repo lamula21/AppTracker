@@ -7,8 +7,10 @@
 		<p align="center">
 			Automates the process to check for updates on internship applications. <br>
 			🎊 <i>A pretty nice way to store your information</i> 🎊
-		</p>
 
+			<sup>Click :star: if you liked the project.</sup>
+		</p>
+		
 		<p align="center"> 
 			<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
 			<br>
