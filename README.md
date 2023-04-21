@@ -7,10 +7,6 @@
 		
 		<br/>
 		
-		<i>A pretty nice way to store your information</i>
-
-		<sup>Click :star: if you liked the project. </sup>
-		
 		<p align="center"> 
 			<strong>Dev</strong> Arushi: <a href="https://github.com/Arushitib">github.com/Arushitib</a>
 			<br/>
