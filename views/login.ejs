@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('partials/header') %>
+	
+	<body>
+
+		<%- include('partials/navbarOne') %>
+		<%- include('partials/flashMsg') %> 
+
+		<h1 class='text-center my-5 pt-5'>Log in</h1>
+		
+		<div class='row justify-content-center'>
+			<div class='col-md-6'>
+				<form action='/auth/login' method='post'>
+
+					<input class='form-control mb-2' name='username' placeholder='Username' type='text' />
+					<input class='form-control mb-2' name='password' placeholder='Password' type='password' />
+					<button class='btn btn-primary w-100' type='submit'>
+						Login
+					</button>
+
+				</form>
+			</div>
+		</div>
+
+
+
+	</body>
+
+</html>

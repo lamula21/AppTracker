@@ -1,0 +1,61 @@
+<div class="alert-container">
+    <% if (success_messages.length > 0 ) { %>
+        <% success_messages.forEach(function(msg) { %>
+            <div class="alert alert-success" role="alert">
+                <i class="bi bi-check-circle"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= msg %>
+            </div>
+        <% }); %>
+    <% } %>
+    
+    <% if (warning_messages.length > 0) { %>
+        <% warning_messages.forEach(function(msg) { %>
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= msg %>
+            </div>
+        <% }); %>
+    <% } %>
+    
+    <% if (primary_messages.length > 0) { %>
+        <% primary_messages.forEach(function(msg) { %>
+            <div class="alert alert-primary" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= msg %>
+            </div>
+        <% }); %>
+    <% } %>
+    
+    <% if (danger_messages.length > 0) { %>
+        <% danger_messages.forEach(function(msg) { %>
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-slash-circle"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= msg %>
+            </div>
+        <% }); %>
+    <% } %>
+    
+    <% if (dark_messages.length > 0) { %>
+        <% dark_messages.forEach(function(msg) { %>
+            <div class="alert alert-dark" role="alert">
+                <i class="bi bi-plus-circle"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%= msg %>
+            </div>
+        <% }); %>
+    <% } %>
+</div>

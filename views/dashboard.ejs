@@ -1,0 +1,211 @@
+<!-- <span class="badge badge-success rounded-pill d-inline">Active</span> -->
+<!-- <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>  -->
+<!-- <span class="badge badge-warning rounded-pill d-inline">Awaiting</span> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('partials/header') %>
+		<link rel="stylesheet" href="/css/dashboard.css" />
+		
+		<!-- scripts for dataTable -->
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+		<script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+		<script defer src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+		<script defer src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js "></script>
+		<script defer src="/js/dataTable.js"></script>
+		<script defer src="/js/form.js"></script>
+</head>
+
+
+<body>
+	<%- include('partials/navbarTwo') %>
+
+	<div id="table-div">
+		<%- include('partials/flashMsg') %> 
+		<!-- Add Application button -->
+		<div class="btn-add">
+			<button type="button" class="btn d-flex align-items-center btn-secondary btn-rounded" id="add-btn" style="z-index:9999">
+				Add Application
+				<i class="fas ms-2 fa-circle-plus"></i>
+			</button>
+		</div>
+
+		<table class="table align-middle mb-0 bg-white" id="myTable">
+
+			<thead class="bg-light">
+				<tr>
+					<th>Company Name</th>
+					<th>Title</th>
+					<th>Status</th>
+					<th>Link</th>
+					<th>Date</th>
+					<th>Location</th>
+					<th>Notes</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<!-- <% %>   for, while, syntax -->
+			<!-- <%- %>  include, export -->
+			<!-- <%= %>  variables -->
+
+			<tbody>
+				<% if (rows) { %>
+	
+					<% rows.forEach( row => { %>
+						<tr id="<%= row._id %>">
+							<td>
+								<div class="d-flex align-items-center">
+									<div class="ms-3">
+										<p class="fw-bold mb-1" id="company"><%= row.company %></p>
+									</div>
+								</div>
+							</td>
+		
+							<td>
+								<p class="fw-normal mb-1" id="title"><%= row.title %></p>
+							</td>
+		
+							<td>
+								<% if(row.status === 'Accepted') { %>
+									<span class="badge badge-success rounded-pill d-inline" id="status"><%= row.status %></span>
+								<% } else if(row.status === 'Reviewing') {%>
+									<span class="badge badge-primary rounded-pill d-inline" id="status"><%= row.status %></span> 
+								<% } else if(row.status === 'Submitted') { %>
+									<span class="badge badge-warning rounded-pill d-inline" id="status"><%= row.status %></span>
+								<% } else if(row.status === 'Rejected') { %>
+									<span class="badge badge-danger rounded-pill d-inline" id="status"><%= row.status %></span>
+								<% } %>
+							</td>
+		
+							<td>
+								<p class="fw-normal mb-1" id="link"><%= row.link %></p>
+							</td>
+		
+							<td>
+								<p class="fw-normal mb-1" id="date"><%= row.date %></p>
+							</td>
+		
+							<td>
+								<p class="fw-normal mb-1" id="location"><%= row.location %></p>
+							</td>
+		
+							<td>
+								<p class="fw-normal mb-1" id="notes"><%= row.notes %></p>
+							</td>
+		
+							<td>
+								<button data-short="<%= row._id %>" href="#" class="btn edit btn-link btn-sm btn-rounded edit" onclick="editApplication('<%= row._id %>')">
+									<i data-short="<%= row._id %>" class="fas fa-lg fa-pen" style="color:rgb(20, 101, 187)
+									"></i>
+								</button>
+		
+								<button data-short="<%= row._id %>" href="#" class="btn delete btn-link btn-sm btn-rounded delete" onclick="deleteRow('<%= row._id %>')">
+									<i data-short="<%= row._id %>" class="far fa-lg fa-trash-can" style="color:red"></i>
+								</button>
+		
+							</td>
+						</tr>
+					<% }) %>
+
+				<% } %>
+
+
+			</tbody>
+		</table>
+	</div>
+
+
+	<!-- HIDDEN FORM - ADD/EDIT -->
+	<div id="overlay"></div>
+	<div id="form-container" class="position-fixed" style="display: none;">
+		<div class="card">
+
+			<button type="button" class="btn-close" onclick="closeForm()"></button>
+
+			<div class="card-body">
+				<h5 class="card-title">Add Application</h5>
+
+				<form action="/user/dashboard" method="post">
+					<div class="row mb-3">
+						<label for="company-name" class="col-sm-3 col-form-label">Company Name</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="company" name="company">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="title" class="col-sm-3 col-form-label">Title</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="title" name="title">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="actions" class="col-sm-3 col-form-label">Status</label>
+						<div class="col-sm-9">
+							<select class="form-select" id="status" name="status">
+								<option value="Submitted">Submitted</option>
+								<option value="Reviewing">Reviewing</option>
+								<option value="Accepted">Accepted</option>
+								<option value="Rejected">Rejected</option>
+							</select>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="link" class="col-sm-3 col-form-label">Link</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="link" name="link">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="date" class="col-sm-3 col-form-label">Date</label>
+						<div class="col-sm-9">
+							<input type="date" class="form-control" id="date" name="date">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="location" class="col-sm-3 col-form-label">Location</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="location" name="location">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="notes" class="col-sm-3 col-form-label">Notes</label>
+						<div class="col-sm-9">
+							<textarea class="form-control" id="notes" rows="2" name="notes"></textarea>
+						</div>
+					</div>
+
+					<div class="d-grid">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- HIDDEN CONFIRMATION PROMPT -->
+	<div id="prompt-container" class="position-fixed" style="display: none;">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title mt-4 mb-4">Please confirm to delete your application.</h5>
+				<div class="d-flex justify-content-center">
+					<div class="d-flex align-items-center  mr-5">
+						<button type="button" class="btn btn-light" onclick="closeForm()">CANCEL</button>
+					</div>
+					<div class="d-flex align-items-center ml-5" id="div-delete">
+						<button type="button" class="btn btn-danger" id="btn-delete">DELETE</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+</body>
+
+<%- include('partials/footer') %>
+
+</html>

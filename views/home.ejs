@@ -1,0 +1,25 @@
+<!-- <% %>   for, while, syntax -->
+<!-- <%- %>  include, export -->
+<!-- <%= %>  variables -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="/css/home.css" />
+		<%- include('partials/header') %>
+	</head>
+
+	<body>
+		<!-- If user is logged in, show navbarTwo, otherwise navbarOne -->
+		<% if(user_login) { %>
+			<%- include('partials/navbarTwo') %>
+		<% } else { %>
+			<%- include('partials/navbarOne') %>
+		<% } %>
+		
+		<%- include('partials/flashMsg') %> 
+
+	</body>
+
+	<%- include('partials/footer') %>
+</html>

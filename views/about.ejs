@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('partials/header') %>
+
+	<body>
+		<% if(user_login) { %>
+			<%- include('partials/navbarTwo') %>
+		<% } else { %>
+			<%- include('partials/navbarOne') %>
+		<% } %>
+		
+		<%- include('partials/flashMsg') %>
+
+	</body>
+</html>
