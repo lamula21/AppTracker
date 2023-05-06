@@ -23,7 +23,9 @@ router.get('/dashboard', loginValidator, readRows)
 router.post('/dashboard', loginValidator, addRow)
 
 // localhost:5001/user/calendar
-// router.get('/calendar')
+router.get('/calendar', (req, res) => {
+    res.render('../views/calendar');
+})
 
 
 /* ---------------- API Routes ---------------- */
