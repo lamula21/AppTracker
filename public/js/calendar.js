@@ -166,19 +166,6 @@ leftTodayBtn.addEventListener("click", () => {
 
 
 //events part
-/* 
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const databaseAndCollection = {
-    db: "appTracker",
-    collection: "calendar",
-  };
-const uri = process.env.URI;
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: ServerApiVersion.v1,
-}); */
-
 
 const rightAddEventBtn = document.querySelector(".add-event");
 const rightAddEventContainer = document.querySelector(".add-event-wrapper");
@@ -200,7 +187,7 @@ rightAddEventCloseBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (e) => {
-    if (e.target !== addEventBtn && !rightAddEventContainer.contains(e.target)) {
+    if (e.target !== rightAddEventBtn && !rightAddEventContainer.contains(e.target)) {
         rightAddEventContainer.classList.remove("active");
     }
 });
@@ -247,33 +234,29 @@ rightAddEventAction.addEventListener("click", (e) => {
     insert_into_db(info);
 });
 
-/* async function insert_into_db(info) {
-    try {
-      await client.connect();
-      await client
-        .db(databaseAndCollection.db)
-        .collection(databaseAndCollection.collection)
-        .insertOne(info);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      await client.close();
-    }
-} */
-
+function insert_into_db(info) {
+    //ehhhh
+}
 
 let calendar_events = [];
 
 function initEvents() {
     const lastDay = (new Date(year, month + 1, 0)).getDate();
+    calendar_events = [];
+
+    //retrieve from database!
     for (let i = 1; i <= lastDay; i++) {
-        calendar_events.push([[`event day ${i}`, "10AM", "12PM"]]);
+        calendar_events.push([]);
+        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
+        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
+        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
+        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
+        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
     }
 }
 
 function displayEvents(selectedDay = date) {
     initEvents();
-    date = selectedDay;
     const selectDay = new Date(year, month, selectedDay);
     const selectDate = selectDay.getDate();
     rightEventDay.innerHTML = days[selectDay.getDay()] + ",";
