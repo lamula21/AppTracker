@@ -78,6 +78,7 @@ addButton.addEventListener('click', () => {
 async function editApplication(rowID) {
 	
 	const url = `https://apptracker.onrender.com/user/api/${rowID}`
+	console.log(url);
 	const rowData = await fetch(url, 
 		{
 			method: 'GET',
@@ -182,6 +183,16 @@ async function saveAndEdit(event, rowID) {
 		location.textContent = newDataRow.location
 		notes.textContent = newDataRow.notes
 		
+		// Display alert for edit successful
+		alertContainer.innerHTML = `            
+		<div class="alert alert-success" role="alert">
+				<i class="bi bi-check-circle"></i>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+				</button>
+					Application edited successfully✏️
+		</div>`
+
 		//3. Close Form
 		closeForm()
 	}
