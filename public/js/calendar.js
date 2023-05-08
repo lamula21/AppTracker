@@ -162,6 +162,7 @@ leftTodayBtn.addEventListener("click", () => {
     month = today.getMonth();
     year = today.getFullYear();
     initCalendar();
+    displayEvents();
 });
 
 
@@ -223,10 +224,17 @@ rightAddEventAction.addEventListener("click", (e) => {
     let eventFrom = convertTime(rightAddEventFrom.value);
     let eventTo = convertTime(rightAddEventTo.value);
     //year + month + day + eventTitle + eventFrom + eventTo;
+    const currDateFocus = document.querySelector('div.day.active').textContent;
+    // console.log(currDateFocus);
+    // console.log(year);
+    // console.log(month);
+    // console.log(eventTitle);
+    // console.log(eventFrom);
+    // console.log(eventTo);
     let info = {
-        year: year,
+        date: currDateFocus,
         month: month,
-        date: date,
+        year: year,
         eventTitle: eventTitle,
         eventFrom: eventFrom,
         eventTo: eventTo
@@ -234,29 +242,131 @@ rightAddEventAction.addEventListener("click", (e) => {
     insert_into_db(info);
 });
 
-function insert_into_db(info) {
+async function insert_into_db(info) {
     //ehhhh
+    // save events on db using fetch POST
+    const url = 'http://localhost:5001/user/api/event'
+
+
+    try {
+        const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify(info),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+    
+        if (!response.ok) {
+          throw new Error(`UPS, COULDNT ADD IT IN OUR DB: ${response.statusText}`);
+        }
+    
+        // Reload the page
+        location.reload();
+    
+      } catch (e) {
+        throw new Error(`UPS, COULDNT ADD IT IN OUR DB: ${e}`);
+      }
+    
 }
 
 let calendar_events = [];
 
-function initEvents() {
+async function initEvents() {
     const lastDay = (new Date(year, month + 1, 0)).getDate();
     calendar_events = [];
+    console.log('INITEVENTS() CALLED')
+    console.log(year);
+    console.log(month);
+
 
     //retrieve from database!
-    for (let i = 1; i <= lastDay; i++) {
-        calendar_events.push([]);
-        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
-        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
-        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
-        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
-        calendar_events[i-1].push([`event day ${i}`, "10:00AM", "12:00PM"]);
+    const userID = document.querySelector('.i').getAttribute('id')
+    const url = `http://localhost:5001/user/api/event/${userID}`
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+          }
+        });
+
+        //  IF FAILED Status 300-600
+		if (!response.ok) {
+			const err = await response.json()
+			if (response.status === 404) {
+				window.location.href = '/404' // redirect to 404 page
+			} else if(response.status === 401) {
+				// Create and display alert-div
+				alertContainer.innerHTML = `            
+				<div class="alert alert-danger" role="alert">
+					<i class="bi bi-slash-circle"></i>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					${err.error}
+				</div>`
+			}
+		}
+
+        // If SUCCESSFUL, populate calendar_events
+        const json = await response.json()
+        
+        //retrieve from database!
+        for (let i = 1; i <= lastDay; i++) {
+            calendar_events.push([]);
+
+            const all = json.filter((element) => element.date === `${i}` && element.month === `${month}` && element.year === `${year}`);
+            
+            all.forEach((event) => {
+                const { eventTitle, eventFrom, eventTo } = event;
+                calendar_events[i - 1].push([eventTitle, eventFrom, eventTo]);
+              });
+        }
+
+       console.log(calendar_events);
+
+       const doc_days = document.querySelectorAll(".day");
+
+        doc_days.forEach(d => {
+            d.classList.remove("event");
+        });
+        let in_month_dates = [];
+
+       doc_days.forEach(d => {
+        if (!d.classList.contains("prev-date") && !d.classList.contains("next-date")) {
+            in_month_dates.push(d);
+        }});
+
+        for (let i = 0; i < in_month_dates.length; i++) {
+            if (calendar_events[i].length !== 0) {
+                in_month_dates[i].classList.add("event");
+            }
+        }
+
+
+
+        
+    } catch (error) {
+        console.log(error);
+		// If any error, create and display div-alert	
+		// const alertContainer = document.querySelector('.alert-container')
+		// alertContainer.innerHTML = `            
+		// <div class="alert alert-danger" role="alert">
+		// 	<i class="bi bi-slash-circle"></i>
+		// 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		// 		<span aria-hidden="true">&times;</span>
+		// 	</button>
+		// 	${error}
+		// </div>`
     }
 }
 
-function displayEvents(selectedDay = date) {
-    initEvents();
+async function displayEvents(selectedDay = date) {
+    await initEvents();
+    // console.log(date);
+    // console.log(year);
+    // console.log(month);
     const selectDay = new Date(year, month, selectedDay);
     const selectDate = selectDay.getDate();
     rightEventDay.innerHTML = days[selectDay.getDay()] + ",";

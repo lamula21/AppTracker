@@ -224,7 +224,7 @@ body{
     position: absolute;
     bottom: 10%;
     left: 50%;
-    width: 75%;
+    width: 6%;
     height: 6px;
     border-radius: 30px;
     transform: translateX(-50%);
@@ -237,7 +237,7 @@ body{
 
 .calendar .active.event::after{
     background-color: #fff;
-    bottom: 20%;
+    bottom: 10%;
 }
 
 .today-btn {
