@@ -246,7 +246,7 @@ async function insert_into_db(info) {
 
     //ehhhh
     // save events on db using fetch POST
-    const url = 'https://apptrackerio.netlify.app//user/api/event'
+    const url = 'https://apptracker.onrender.com/user/api/event'
 
     try {
         const response = await fetch(url, {
@@ -295,7 +295,7 @@ async function initEvents() {
 
     //retrieve from database!
     const userID = document.querySelector('.i').getAttribute('id')
-    const url = `https://apptrackerio.netlify.app//user/api/event/${userID}`
+    const url = `https://apptracker.onrender.com/user/api/event/${userID}`
     try {
         const response = await fetch(url, {
             method: 'GET',
