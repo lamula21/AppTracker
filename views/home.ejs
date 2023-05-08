@@ -5,7 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+
 		<link rel="stylesheet" href="/css/home.css" />
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+		<link href="https://cdn.jsdelivr.net/gh/yesiamrocks/cssanimation.io@1.0.3/cssanimation.min.css" rel="stylesheet">
 		<%- include('partials/header') %>
 	</head>
 
@@ -18,6 +21,154 @@
 		<% } %>
 		
 		<%- include('partials/flashMsg') %> 
+
+		<!-- Background image -->
+		<div id="intro" class="bg-image shadow-2-strong">
+			<div class="mask" style="background-color: rgba(0, 0, 0, 0.8);">
+				<div class="container d-flex align-items-center justify-content-center text-center h-100">
+					<div class="text-white">
+						<div id="initial">
+							<h1 class="mb-3 type" id="type-element">create, edit, save</h1>
+						</div>
+						<h5 class="mb-4">Best & free data table to store your intership and job applications</h5>
+						<a class="btn btn-outline-light btn-lg m-2" href="/auth/register" role="button"
+							rel="nofollow" target="_blank">Start Here</a>
+						<a class="btn btn-outline-light btn-lg m-2" id="readme" role="button">Read Me</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Background image -->
+
+
+
+		<div id="main-container">
+			
+			<div class="section" data-aos="fade-left">
+				<div class="row align-items-center">
+					<div class="col-md-6 text-center" data-aos="fade-left">
+						<div>
+							<h2>Lorem, ipsum.</h2>
+							<h3>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+								Atque, laboriosam.
+							</h3>
+						</div>
+					</div>
+					<div class="col-md-6 d-flex justify-content-center align-items-center">
+						<lottie-player src="https://assets3.lottiefiles.com/packages/lf20_2FrNS5.json" background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
+					</div>
+				</div>
+			</div>
+
+
+			
+			<div class="section" data-aos="fade-left">
+				<div class="row align-items-center">
+
+					<div class="col-md-6 d-flex justify-content-center align-items-center">
+						<lottie-player src="https://assets4.lottiefiles.com/packages/lf20_G7vLcuCIC3.json" mode="bounce" background="transparent"  speed="2"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
+					</div>
+
+					<div class="col-md-6 text-center" data-aos="fade-left">
+						<div>
+							<h2>Lorem, ipsum.</h2>
+							<h3>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+								Atque, laboriosam.
+							</h3>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<div class="section" data-aos="fade-left">
+				<div class="row align-items-center">
+					<div class="col-md-6 text-center" data-aos="fade-left">
+						<div>
+							<h2>Lorem, ipsum.</h2>
+							<h3>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+								Atque, laboriosam.
+							</h3>
+						</div>
+					</div>
+					<div class="col-md-6 d-flex justify-content-center align-items-center">
+						<lottie-player src="https://assets7.lottiefiles.com/private_files/lf30_ruFpBu.json" mode="bounce" background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="section" data-aos="fade-left">
+				<div class="row align-items-center">
+
+					<div class="col-md-6 d-flex justify-content-center align-items-center">
+						<lottie-player src="https://assets8.lottiefiles.com/packages/lf20_NHtRApNRPx.json" mode="bounce" background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
+					</div>
+
+					<div class="col-md-6 text-center" data-aos="fade-left">
+						<div>
+							<h2>Lorem, ipsum.</h2>
+							<h3>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+								Atque, laboriosam.
+							</h3>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+		<footer>
+			<!-- Copyright -->
+			<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+				© 2023 Copyright:
+				<a class="text-dark" href="https://github.com/lamula21/AppTracker#apptracker">AppTracker.com</a>
+			</div>
+			<!-- Copyright -->
+		</footer>
+
+		<!-- Animation CDN script -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/yesiamrocks/cssanimation.io@1.0.3/letteranimation.min.js"></script>
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+		<script>
+			AOS.init({
+				offset: 200,
+				duration: 2000,
+			});
+		</script>
+		
+		<!-- script for typing animation -->
+		<script>
+			const element = document.querySelector('#type-element');
+			const typingAnimationDuration = 3000; // in milliseconds
+
+			// Wait for the typing animation to complete and then add the "complete" class
+			setTimeout(() => {
+				element.classList.add('complete');
+			}, typingAnimationDuration);
+		</script>
+
+		<!-- button script redirect -->
+		<script>
+			document.querySelector('#readme').addEventListener('click', function(e) {
+				e.preventDefault(); // prevent default behavior of the button click event
+				const mainContainer = document.querySelector('#main-container');
+				mainContainer.scrollIntoView({ behavior: 'smooth' }); // scroll to the main-container div
+			});
+		</script>
+
+	<!-- lottie files script -->
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 	</body>
 

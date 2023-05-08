@@ -180,7 +180,7 @@ const rightAddEventTo = document.querySelector(".event-time-to");
 const rightAddEventAction = document.querySelector(".add-event-btn");
 const rightEventDay = document.querySelector(".event-day");
 const rightEventDate = document.querySelector(".event-date");
-const rightEvents = document.querySelector(".events");
+let rightEvents = document.querySelector(".events");
 
 rightAddEventBtn.addEventListener("click", () => {
     rightAddEventContainer.classList.toggle("active");
@@ -228,12 +228,6 @@ rightAddEventAction.addEventListener("click", (e) => {
     let eventTo = convertTime(rightAddEventTo.value);
     //year + month + day + eventTitle + eventFrom + eventTo;
     const currDateFocus = document.querySelector('div.day.active').textContent;
-    // console.log(currDateFocus);
-    // console.log(year);
-    // console.log(month);
-    // console.log(eventTitle);
-    // console.log(eventFrom);
-    // console.log(eventTo);
     let info = {
         date: currDateFocus,
         month: month,
@@ -245,11 +239,14 @@ rightAddEventAction.addEventListener("click", (e) => {
     insert_into_db(info);
 });
 
+let calendar_events = [];
 async function insert_into_db(info) {
+    // Flash div
+    const alertContainer = document.querySelector('.alert-container')
+
     //ehhhh
     // save events on db using fetch POST
     const url = 'http://localhost:5001/user/api/event'
-
 
     try {
         const response = await fetch(url, {
@@ -264,8 +261,27 @@ async function insert_into_db(info) {
           throw new Error(`UPS, COULDNT ADD IT IN OUR DB: ${response.statusText}`);
         }
     
-        // Reload the page
-        location.reload();
+        // Add Event into the DOM
+        rightEvents = document.querySelector(".events");
+        let displayEvents = `
+        <div class="event">
+            <div class="title">
+                <i class="fas fa-circle"></i>
+                <h3 class="event-title">${info.eventTitle}</h3>
+            </div>
+            <div class="event-time">${info.eventFrom} - ${info.eventTo}</div>
+        </div>`
+        rightEvents.innerHTML += displayEvents;
+
+        // Display alert for adding event successful
+        alertContainer.innerHTML = `            
+        <div class="alert alert-success" role="alert">
+            <i class="bi bi-check-circle"></i>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+             Event added successfully🎉🎉
+        </div>`
     
       } catch (e) {
         throw new Error(`UPS, COULDNT ADD IT IN OUR DB: ${e}`);
@@ -273,15 +289,9 @@ async function insert_into_db(info) {
     
 }
 
-let calendar_events = [];
-
 async function initEvents() {
     const lastDay = (new Date(year, month + 1, 0)).getDate();
     calendar_events = [];
-    console.log('INITEVENTS() CALLED')
-    console.log(year);
-    console.log(month);
-
 
     //retrieve from database!
     const userID = document.querySelector('.i').getAttribute('id')
@@ -327,7 +337,6 @@ async function initEvents() {
               });
         }
 
-       console.log(calendar_events);
 
        const doc_days = document.querySelectorAll(".day");
 
@@ -345,31 +354,23 @@ async function initEvents() {
             if (calendar_events[i].length !== 0) {
                 in_month_dates[i].classList.add("event");
             }
-        }
-
-
-
-        
+        }        
     } catch (error) {
-        console.log(error);
-		// If any error, create and display div-alert	
-		// const alertContainer = document.querySelector('.alert-container')
-		// alertContainer.innerHTML = `            
-		// <div class="alert alert-danger" role="alert">
-		// 	<i class="bi bi-slash-circle"></i>
-		// 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		// 		<span aria-hidden="true">&times;</span>
-		// 	</button>
-		// 	${error}
-		// </div>`
+		//If any error, create and display div-alert	
+		const alertContainer = document.querySelector('.alert-container')
+		alertContainer.innerHTML = `            
+		<div class="alert alert-danger" role="alert">
+			<i class="bi bi-slash-circle"></i>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			${error}
+		</div>`
     }
 }
 
 async function displayEvents(selectedDay = date) {
     await initEvents();
-    // console.log(date);
-    // console.log(year);
-    // console.log(month);
     const selectDay = new Date(year, month, selectedDay);
     const selectDate = selectDay.getDate();
     rightEventDay.innerHTML = days[selectDay.getDay()] + ",";

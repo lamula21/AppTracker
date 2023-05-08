@@ -100,7 +100,6 @@ const editRow = async (req, res) => {
 		res.json(updatedTable)	// Send back the updated table in json
 		
 	} catch (error) {
-		console.error(error)
 		res.status(500).json( { message: "Server is getting crazy"} )
 	} 
 }
@@ -133,8 +132,6 @@ const getEvent = async (req, res) => {
 		const { id } = req.params
 
 		const events = await Event.find( { user: id } )
-
-		console.log(events);
 
 		res.json(events) // send data to be consumed by a fetch
 
