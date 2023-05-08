@@ -60,12 +60,12 @@ header ul li a {
 
 header.sticky {
 	padding: 5px 100px;
-	background: black;
+	background: black !important;
 }
 
 header.sticky .logo,
 header.sticky ul li a {
-	color: white;
+	color: white !important;
 }
 
 /* ------ navbar dark mode ------*/
@@ -116,6 +116,10 @@ header.sticky.dark ul li a {
 .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
   left: 0;
   right: 0;
+}
+header.sticky .hvr-underline-from-center:before{
+	background: white;
+	height: 3.5px;
 }
 
 
