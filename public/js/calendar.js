@@ -96,6 +96,7 @@ function changeMonth(selectedMonth, selectedYear) {
     year = selectedYear;
     initCalendar();
     initHeaderMonth();
+    displayEvents();
 }
 
 function changeDay(selectedDay) {
@@ -142,6 +143,7 @@ function prevMonth() {
     }
     initCalendar();
     initHeaderMonth();
+    displayEvents();
 }
 
 function nextMonth() {
@@ -152,6 +154,7 @@ function nextMonth() {
     }
     initCalendar();
     initHeaderMonth();
+    displayEvents();
 }
 
 initHeaderMonth();
