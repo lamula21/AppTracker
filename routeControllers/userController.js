@@ -4,7 +4,7 @@
 //   - req.user.username
 
 const Table = require('../database/Table')
-
+const Event = require('../database/Event')
 // ----------- CRUD operations -----------
 
 // GET - Read all rows from DB
@@ -40,19 +40,19 @@ const fetchRow = async (req, res) => {
 	
 }
 
-// GET - Send a Row based on an id to whoever fetch this URL (API!!!)
+// GET - ALL ROWS FROM USER (ON WORK)
 const fetchRows = async (req, res) => {
-	try {
-		const {id} = req.params
-		const row = await Table.findById(id)
-		// lean() -> formatted js object
-		// -> {company: _ , title: _, link: _, id: _, etc}
-		// -> {company: _ , title: _, link: _, id: _, etc}
-		// ...
-		res.json(row) // send data to be consumed by a fetch
-	} catch (error) {
-		return res.status('404')
-	}
+	// try {
+	// 	const {id} = req.params
+	// 	const row = await Table.findById(id)
+	// 	// lean() -> formatted js object
+	// 	// -> {company: _ , title: _, link: _, id: _, etc}
+	// 	// -> {company: _ , title: _, link: _, id: _, etc}
+	// 	// ...
+	// 	res.json(row) // send data to be consumed by a fetch
+	// } catch (error) {
+	// 	return res.status('404')
+	// }
 	
 }
 
@@ -109,7 +109,6 @@ const deleteRow = async (req, res) => {
 	try {
 		const { id } = req.params
 		const row = await Table.findById(id)
-		console.log(row)
 
 		if (!row) 
 			return res.statu(404).json({ error: "Application does not exist👎"})
@@ -128,5 +127,48 @@ const deleteRow = async (req, res) => {
 	}
 }
 
+// GET - get events based on date, month, year from DB
+const getEvent = async (req, res) => {
+	try {
+		const { id } = req.params
 
-module.exports = { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow}
+		const events = await Event.find( { user: id } )
+
+		console.log(events);
+
+		res.json(events) // send data to be consumed by a fetch
+
+	} catch (error) {
+		res.status(500).json( { message: "We couldnt get your data. Our server is down 🤡"} )
+	}
+}
+
+
+// POST - Add new event into DB
+const addEvent = async (req, res) => {
+	const { date, month, year, eventTitle, eventFrom, eventTo } = req.body
+	
+	try {
+		// Create an Event Model
+		const event = new Event({
+			user: req.user.id,
+			date: date,
+			month: month,
+			year: year,
+			eventTitle: eventTitle,
+			eventFrom: eventFrom,
+			eventTo: eventTo
+		})
+
+		await event.save()	// Save event into the DB
+		req.flash('success', 'Event added succesfully🔥')
+		res.redirect('/user/calendar')
+
+	} catch (error) {
+			req.flash('warning', 'We coudlnt add your event 👎')
+			return res.redirect('/user/calendar')
+	}
+}
+
+
+module.exports = { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow, getEvent, addEvent}
