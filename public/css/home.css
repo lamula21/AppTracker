@@ -28,6 +28,7 @@ h1 {
 	min-height: 100vh;
 	margin-left: 100px;
 	margin-right: 100px;
+	overflow-x: hidden;
 }
 
 .type {
