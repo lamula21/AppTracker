@@ -72,7 +72,7 @@ app.use('/user', require('./routes/user'))
 app.use('/auth', require('./routes/auth'))
 
 // Initialize Project
-const PORT = 5001
+const PORT = process.env.PORT || 5001
 app.listen(PORT, () =>
 	console.log(`Server working... http://localhost:${PORT}`)
 )
