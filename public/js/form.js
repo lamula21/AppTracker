@@ -77,7 +77,7 @@ addButton.addEventListener('click', () => {
 // 		Modifies the `Hidden Form` and display it
 async function editApplication(rowID) {
 	
-	const url = `http://localhost:5001/user/api/${rowID}`
+	const url = `https://apptrackerio.netlify.app//user/api/${rowID}`
 	const rowData = await fetch(url, 
 		{
 			method: 'GET',
@@ -127,7 +127,7 @@ async function saveAndEdit(event, rowID) {
 		notes: notesTextArea.value
 	}
 
-	const url = `http://localhost:5001/user/api/edit/${rowID}`
+	const url = `https://apptrackerio.netlify.app//user/api/edit/${rowID}`
 
 
 	const response = await fetch(url, {
@@ -209,7 +209,7 @@ async function deleteRow(rowID){
 // FETCH DELETE - delete row in the DB
 async function saveAndDelete(rowID) {
 	// FETCH DELETE, returns the data deleted
-	const url = `http://localhost:5001/user/api/delete/${rowID}`
+	const url = `https://apptrackerio.netlify.app//user/api/delete/${rowID}`
 
 	try {
 		const response = await fetch(url, {
