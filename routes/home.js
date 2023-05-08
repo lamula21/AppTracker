@@ -8,12 +8,11 @@ const router = express.Router()
 
 // localhost:5001/
 router.get('/', (request, response) => {
-	console.log(request.user)
-	response.render('home', { layout: 'layouts/main' })
+	response.render('home')
 })
 
 // localhost:5001/about
 router.get('/about', (request, response) => {
-	response.render('about', { layout: 'layouts/main' })
+	response.render('about')
 })
 module.exports = router

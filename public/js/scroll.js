@@ -10,7 +10,5 @@ function scrollTracker() {
 		document.documentElement.scrollHeight -
 		document.documentElement.clientHeight
 	var scrolled = (winScroll / height) * 100
-	console.log(scrolled)
-	console.log(document.getElementById('myBar'))
 	document.getElementById('myBar').style.width = scrolled + '%'
 }
