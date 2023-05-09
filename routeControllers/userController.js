@@ -3,7 +3,9 @@
 //   - req.user.id, 
 //   - req.user.username
 
+const { application } = require('express')
 const Table = require('../database/Table')
+const puppeteer = require('puppeteer')
 
 // ----------- CRUD operations -----------
 
@@ -128,5 +130,134 @@ const deleteRow = async (req, res) => {
 	}
 }
 
+// GET - Send a Row based on an id to whoever fetch this URL (API!!!)
+const automata = async (req, res) => {
+	try {
+		const user_id = req.user._id
+		const table = await Table.find({user: user_id})
+		//console.log(table)
+		let relevantItem;
+		let link;
+		table.forEach(elem=> {
+			if (elem.link == 'https://umd-csm.symplicity.com/sso/students/login') { 
+				relevantItem = elem;
+				link = elem.link;
+		 	}
+		});
+		console.log(relevantItem);
+		let newRow = automateLogin("atibrew1", "ARUumd17112002!", relevantItem)
+		//So, ideally, login will be called for all applications but for now, we're only implementing one website -> c4t
+		//const newRow = mapDbToAutomated(table)
 
-module.exports = { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow}
+		//code to update db
+		const find = await Table.findByIdAndUpdate({id: relevantItem.id}, {status : newRow.status});
+		newRow.save()
+
+		res.send('HERE: UPDATES CORRECTLY!!!!!!')
+	} catch (error) {
+		return res.send(error)
+	}
+}
+
+async function automateLogin(username, password, itemFromDB) {
+    try {
+    	const browser = await puppeteer.launch({ headless: false }); //rn, not a headless browser bc DUO Mobile will not allow 
+        const page = await browser.newPage();
+        
+        await page.goto('https://umd-csm.symplicity.com/sso/students/login');
+        
+        // Find the login elements by attribute
+        const usernameInput = await page.$('input[type="text"]');
+        const passwordInput = await page.$('input[type="password"]');
+        const loginButton = await page.$('button[type="submit"]');
+        
+        // Fill in the login form and submit
+        await usernameInput.type(username);
+        await passwordInput.type(password);
+        await loginButton.click();
+        
+        // Wait for the login to complete
+        await page.waitForNavigation();
+
+        //Since login uses DUO Mobile, seeting a timeout so that user can approve login from duo
+        setTimeout(async () => { //automation needs some time to load, set to wait for 20 seconds
+            //extracting text from page
+            const url = 'https://umd-csm.symplicity.com/students/index.php?s=jobs&ss=applied&mode=list&subtab=nocr';
+            await page.goto(url);
+          
+            const visibleText = await page.evaluate(() => {
+              // This function extracts the text content of all visible nodes in the DOM
+              const walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              let node;
+              let text = '';
+              while ((node = walker.nextNode())) {
+                if (node.parentElement.offsetWidth > 0 && node.parentElement.offsetHeight > 0) {
+                  text += node.textContent.trim() + ' ';
+                }
+              }
+              return text.trim();
+            });
+            console.log(visibleText);
+            getStatus(visibleText); // this should create an object with updated values
+
+			let newRow = mapDbToAutomated(visibleText, itemFromDB);
+
+			//now newRow just needs to be updated in db. can delete the current row, and push the new row
+          
+            await browser.close();
+          },20000); 
+          console.log("AUTOMATA WORKED :)))))");
+    } 
+    catch {
+        console.log("AUTOMATA FAILED :((");
+    }
+}
+
+function mapDbToAutomated(text, itemFromDB) {
+	let oldStatus = itemFromDB.status;
+	let newStatus = getStatus(text, itemFromDB.positionName, oldStatus);
+
+	if (oldStatus == newStatus) {
+		console.log("NO CHANGES WERE RECORDED")
+		return itemFromDB;
+	} else {
+		//edit row with new staus
+		let newRow = itemFromDB;
+		newRow.status = newStatus;
+		console.log("CHANGE RECORDED!")
+		return newRow;
+	}
+
+}
+
+function getStatus(text, positionName, prevStatus) {
+    text = text.trim();
+	let matchedStringStatus;
+	if (text.includes(positionName)) {
+		//very basic regex but will work for now
+		const re = new RegExp("Application Submitted", "In Review", "Accepted", "Application Rejected");
+		matchedStringStatus = text.match(re);
+		if (matchedStringStatus == "Application Submitted") { matchedStringStatus = "Submitted";}
+ 	}
+
+	return matchedStringStatus === null ? prevStatus : matchedStringStatus;
+
+	/* CODE TO JUST SEE THE PARSED INFORMATION CLEARLY - DON'T NEED
+	let count = 0;
+    let arr = text.split(" ");
+    arr = arr.filter( elem => elem.length > 2 );
+    arr.forEach(element => {
+       //console.log(`COUNT HERE: ${count++}`);
+       console.log(element); 
+    });
+	*/
+}
+
+//automateLogin("atibrew1","ARUumd17112002!")
+
+module.exports = { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow, automata}

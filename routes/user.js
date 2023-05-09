@@ -11,7 +11,7 @@
 
 
 const express = require('express')
-const { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow } = require('../routeControllers/userController')
+const { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow, automata } = require('../routeControllers/userController')
 const router = express.Router()
 
 const loginValidator = require('../middlewares/loginValidation')
@@ -40,6 +40,6 @@ router.put('/api/edit/:id', editRow)
 // localhost:5001/user/api/delete/:id
 router.delete('/api/delete/:id', deleteRow)
 
-
+router.post('/api/automata', automata)
 
 module.exports = router
