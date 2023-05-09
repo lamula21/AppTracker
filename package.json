@@ -18,7 +18,8 @@
 		"mongoose": "^7.0.5",
 		"nodemon": "^2.0.22",
 		"passport": "^0.6.0",
+		"path": "^0.12.7",
 		"puppeteer": "^20.1.1",
-		"path": "^0.12.7"
+		"twilio": "^4.11.0"
 	}
 }

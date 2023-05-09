@@ -244,10 +244,8 @@ function mapDbToAutomated(text, itemFromDB) {
 		     to: '+4152971972'
 		   })
 		  .then(message => console.log(message.sid));
-
 		return newRow;
 	}
-
 }
 
 function getStatus(text, positionName, prevStatus) {
