@@ -151,8 +151,13 @@ const automata = async (req, res) => {
 		});
 		 //console.log(relevantItem);
 		// console.log(link);
-		let newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem)
-		console.log(newRow);
+		let newRow;
+		setTimeout( async () => {
+			newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem);
+		}, 30000);
+
+		//let newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem);
+		console.log("HERERERERE:" + newRow);
 		//So, ideally, login will be called for all applications but for now, we're only implementing one website -> c4t
 		//const newRow = mapDbToAutomated(table)
 
@@ -210,10 +215,8 @@ async function automateLogin(username, password, itemFromDB) {
 	          }
 	          return text.trim();
 	        });
-	        //console.log(visibleText);
-	        //getStatus(visibleText);
-			//console.log("VISIBLE TEXT : " + visibleText);
-			let newRow = await mapDbToAutomated(visibleText, itemFromDB);
+			console.log("VISIBLE TEXT : " + visibleText);
+			let newRow = mapDbToAutomated(visibleText, itemFromDB);
 			console.log(newRow);
 	      	console.log("AUTOMATA WORKED :)))))");
 			await browser.close();
@@ -225,9 +228,9 @@ async function automateLogin(username, password, itemFromDB) {
     }
 }
 
-async function mapDbToAutomated(text, itemFromDB) {
+function mapDbToAutomated(text, itemFromDB) {
 	let oldStatus = itemFromDB.status;
-	let newStatus = await getStatus(text, itemFromDB.positionName, oldStatus);
+	let newStatus = getStatus(text, itemFromDB.positionName, oldStatus);
 
 	if (oldStatus === newStatus) {
 		console.log("NO CHANGES WERE RECORDED")
@@ -255,7 +258,7 @@ async function mapDbToAutomated(text, itemFromDB) {
 	}
 }
 
-async function getStatus(text, positionName, prevStatus) {
+function getStatus(text, positionName, prevStatus) {
     text = text.trim();
 	//console.log("HEREERER" + text);
 	let matchedStringStatus;
