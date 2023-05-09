@@ -70,20 +70,20 @@ header.sticky ul li a {
 
 /* ------ navbar dark mode ------*/
 header .logo.dark {
-	color: white;
+	color: white !important;
 }
 
 header ul li a.dark {
-	color: white;
+	color: white !important;
 }
 
 header.sticky.dark {
-	background: black;
+	background: black !important;
 }
 
 header.sticky.dark .logo,
 header.sticky.dark ul li a {
-	color: white;
+	color: white !important;
 }
 
 /* -------- Hover CSS -------- */
@@ -118,7 +118,7 @@ header.sticky.dark ul li a {
   right: 0;
 }
 header.sticky .hvr-underline-from-center:before{
-	background: white;
+	background: white !important;
 	height: 3.5px;
 }
 
