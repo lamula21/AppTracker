@@ -152,7 +152,7 @@ const automata = async (req, res) => {
 		 //console.log(relevantItem);
 		// console.log(link);
 		let newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem)
-		 //console.log(newRow);
+		console.log(newRow);
 		//So, ideally, login will be called for all applications but for now, we're only implementing one website -> c4t
 		//const newRow = mapDbToAutomated(table)
 
@@ -210,24 +210,24 @@ async function automateLogin(username, password, itemFromDB) {
 	          }
 	          return text.trim();
 	        });
-	        console.log(visibleText);
+	        //console.log(visibleText);
 	        //getStatus(visibleText);
-	      
-        await browser.close();
-      }, 20000);
+			//console.log("VISIBLE TEXT : " + visibleText);
+			let newRow = await mapDbToAutomated(visibleText, itemFromDB);
+			console.log(newRow);
+	      	console.log("AUTOMATA WORKED :)))))");
+			await browser.close();
+			return newRow;
+      }, 30000);
 		
-		console.log("VISIBLE TEXT : " + visibleText);
-		let newRow = await mapDbToAutomated(visibleText, itemFromDB);
-      	console.log("AUTOMATA WORKED :)))))");
-		return newRow;
     } catch (error){
         console.log("AUTOMATA FAILED :((" + error);
     }
 }
 
-function mapDbToAutomated(text, itemFromDB) {
+async function mapDbToAutomated(text, itemFromDB) {
 	let oldStatus = itemFromDB.status;
-	let newStatus = getStatus(text, itemFromDB.positionName, oldStatus);
+	let newStatus = await getStatus(text, itemFromDB.positionName, oldStatus);
 
 	if (oldStatus === newStatus) {
 		console.log("NO CHANGES WERE RECORDED")
@@ -239,7 +239,7 @@ function mapDbToAutomated(text, itemFromDB) {
 		//console.log(newRow)
 		newRow.status = newStatus;
 		//console.log(newStatus);
-		//console.log(newRow)
+		console.log("HERE:"+ newRow)
 		console.log("CHANGE RECORDED!")
 
 		/*
@@ -255,19 +255,20 @@ function mapDbToAutomated(text, itemFromDB) {
 	}
 }
 
-function getStatus(text, positionName, prevStatus) {
+async function getStatus(text, positionName, prevStatus) {
     text = text.trim();
-	console.log("HEREERER" + text);
+	//console.log("HEREERER" + text);
 	let matchedStringStatus;
 	if (text.includes(positionName)) {
 		//very basic regex but will work for now
 		const re = new RegExp("Application Submitted", "In Review", "Accepted", "Application Rejected");
 		matchedStringStatus = text.match(re);
-		if (matchedStringStatus == "Application Submitted") { matchedStringStatus = "Submitted";}
+		if (matchedStringStatus == "Application submitted") { matchedStringStatus = "Submitted";}
 		console.log(matchedStringStatus);
  	}
-	if (text.includes("Application Submitted")) {
+	if (text.includes("Application submitted")) {
 		matchedStringStatus = "Submitted";
+		//console.log(matchedStringStatus);
 		return matchedStringStatus;
  	} else {
 		return matchedStringStatus === undefined ? prevStatus : matchedStringStatus;
