@@ -40,6 +40,6 @@ router.put('/api/edit/:id', editRow)
 // localhost:5001/user/api/delete/:id
 router.delete('/api/delete/:id', deleteRow)
 
-router.post('/api/automata', automata)
+router.put('/api/automata', automata)
 
 module.exports = router

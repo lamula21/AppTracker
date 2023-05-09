@@ -151,19 +151,18 @@ const automata = async (req, res) => {
 		});
 		 //console.log(relevantItem);
 		// console.log(link);
-		let newRow;
-		setTimeout( async () => {
-			newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem);
-		}, 30000);
+		//let newRow;
+		
+		await automateLogin("jvaldiv8", "Starcraft14021099.", relevantItem);
+		
 
 		//let newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem);
-		console.log("HERERERERE:" + newRow);
+		//console.log("HERERERERE:" + newRow);
 		//So, ideally, login will be called for all applications but for now, we're only implementing one website -> c4t
 		//const newRow = mapDbToAutomated(table)
 
 		//code to update db
-		const find = await Table.findByIdAndUpdate({id: relevantItem.id}, {status : newRow.status});
-		find.save()
+
 
 		res.send('HERE: UPDATES CORRECTLY!!!!!!')
 	} catch (error) {
@@ -217,8 +216,8 @@ async function automateLogin(username, password, itemFromDB) {
 	        });
 			console.log("VISIBLE TEXT : " + visibleText);
 			let newRow = mapDbToAutomated(visibleText, itemFromDB);
-			console.log(newRow);
-	      	console.log("AUTOMATA WORKED :)))))");
+			await Table.findByIdAndUpdate( { _id: itemFromDB._id.toString()} , {status: newRow.status} );
+	    console.log("AUTOMATA WORKED :)))))");
 			await browser.close();
 			return newRow;
       }, 30000);

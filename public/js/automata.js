@@ -23,7 +23,7 @@ const fetching = async () => {
 	try {
 		console.log("Calling fetch for automata");
 		const response = await fetch('http://localhost:5001/user/api/automata', {
-			method: 'POST',
+			method: 'PUT',
 			headers: {'Content-Type': 'applications/json'}
 		})
         console.log(response);
