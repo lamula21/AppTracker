@@ -34,8 +34,9 @@ const fetching = async () => {
 	} catch (error) {
 		console.log(error)
 	}
-	
 }
+
+fetching()
 /*
 async function automateLogin(username, password) {
     try {

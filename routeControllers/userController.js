@@ -138,25 +138,26 @@ const deleteRow = async (req, res) => {
 // GET - Send a Row based on an id to whoever fetch this URL (API!!!)
 const automata = async (req, res) => {
 	try {
-		const user_id = req.user._id
+		const user_id = req.user.id
 		const table = await Table.find({user: user_id})
-		//console.log(table)
 		let relevantItem;
 		let link;
 		table.forEach(elem=> {
-			if (elem.link == 'https://umd-csm.symplicity.com/sso/students/login') { 
+			if (elem.link === 'https://umd-csm.symplicity.com/sso/students/login') { 
 				relevantItem = elem;
 				link = elem.link;
 		 	}
 		});
-		console.log(relevantItem);
-		let newRow = automateLogin("atibrew1", "ARUumd17112002!", relevantItem)
+		// console.log(relevantItem);
+		// console.log(link);
+		let newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem)
+		// console.log(newRow);
 		//So, ideally, login will be called for all applications but for now, we're only implementing one website -> c4t
 		//const newRow = mapDbToAutomated(table)
 
 		//code to update db
-		const find = await Table.findByIdAndUpdate({id: relevantItem.id}, {status : newRow.status});
-		newRow.save()
+		//const find = await Table.findByIdAndUpdate({id: relevantItem.id}, {status : newRow.status});
+		//newRow.save()
 
 		res.send('HERE: UPDATES CORRECTLY!!!!!!')
 	} catch (error) {
@@ -183,14 +184,14 @@ async function automateLogin(username, password, itemFromDB) {
         
         // Wait for the login to complete
         await page.waitForNavigation();
-
+				let visibleText;
         //Since login uses DUO Mobile, seeting a timeout so that user can approve login from duo
         setTimeout(async () => { //automation needs some time to load, set to wait for 20 seconds
             //extracting text from page
             const url = 'https://umd-csm.symplicity.com/students/index.php?s=jobs&ss=applied&mode=list&subtab=nocr';
             await page.goto(url);
           
-            const visibleText = await page.evaluate(() => {
+            visibleText = await page.evaluate(() => {
               // This function extracts the text content of all visible nodes in the DOM
               const walker = document.createTreeWalker(
                 document.body,
@@ -203,12 +204,15 @@ async function automateLogin(username, password, itemFromDB) {
               while ((node = walker.nextNode())) {
                 if (node.parentElement.offsetWidth > 0 && node.parentElement.offsetHeight > 0) {
                   text += node.textContent.trim() + ' ';
+									console.log(text);
+									//visibleText +=node.textContent.trim();
                 }
               }
-              return text.trim();
+              //return 
+							
             });
-            console.log(visibleText);
-            getStatus(visibleText); // this should create an object with updated values
+            //console.log(visibleText);
+            //getStatus(visibleText); // this should create an object with updated values
 
 			//now newRow just needs to be updated in db. can delete the current row, and push the new row
           
@@ -216,7 +220,8 @@ async function automateLogin(username, password, itemFromDB) {
           },20000); 
 
 		  let newRow = mapDbToAutomated(visibleText, itemFromDB);
-          console.log("AUTOMATA WORKED :)))))");
+      console.log("AUTOMATA WORKED :)))))");
+			return newRow;
     } 
     catch {
         console.log("AUTOMATA FAILED :((");
