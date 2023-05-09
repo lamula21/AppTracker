@@ -7,10 +7,11 @@ const { application } = require('express')
 const Table = require('../database/Table')
 const puppeteer = require('puppeteer')
 
-/* twilio stuff (arushi) */
+/* twilio stuff (arushi) 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
+*/
 
 // ----------- CRUD operations -----------
 
@@ -148,16 +149,16 @@ const automata = async (req, res) => {
 				link = elem.link;
 		 	}
 		});
-		// console.log(relevantItem);
+		 //console.log(relevantItem);
 		// console.log(link);
 		let newRow = await automateLogin("atibrew1", "ARUumd17112002!", relevantItem)
-		// console.log(newRow);
+		 //console.log(newRow);
 		//So, ideally, login will be called for all applications but for now, we're only implementing one website -> c4t
 		//const newRow = mapDbToAutomated(table)
 
 		//code to update db
-		//const find = await Table.findByIdAndUpdate({id: relevantItem.id}, {status : newRow.status});
-		//newRow.save()
+		const find = await Table.findByIdAndUpdate({id: relevantItem.id}, {status : newRow.status});
+		find.save()
 
 		res.send('HERE: UPDATES CORRECTLY!!!!!!')
 	} catch (error) {
@@ -167,64 +168,61 @@ const automata = async (req, res) => {
 
 async function automateLogin(username, password, itemFromDB) {
     try {
-    	const browser = await puppeteer.launch({ headless: false }); //rn, not a headless browser bc DUO Mobile will not allow 
-        const page = await browser.newPage();
-        
-        await page.goto('https://umd-csm.symplicity.com/sso/students/login');
-        
-        // Find the login elements by attribute
-        const usernameInput = await page.$('input[type="text"]');
-        const passwordInput = await page.$('input[type="password"]');
-        const loginButton = await page.$('button[type="submit"]');
-        
-        // Fill in the login form and submit
-        await usernameInput.type(username);
-        await passwordInput.type(password);
-        await loginButton.click();
-        
-        // Wait for the login to complete
-        await page.waitForNavigation();
-				let visibleText;
-        //Since login uses DUO Mobile, seeting a timeout so that user can approve login from duo
-        setTimeout(async () => { //automation needs some time to load, set to wait for 20 seconds
-            //extracting text from page
-            const url = 'https://umd-csm.symplicity.com/students/index.php?s=jobs&ss=applied&mode=list&subtab=nocr';
-            await page.goto(url);
-          
-            visibleText = await page.evaluate(() => {
-              // This function extracts the text content of all visible nodes in the DOM
-              const walker = document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_TEXT,
-                null,
-                false
-              );
-              let node;
-              let text = '';
-              while ((node = walker.nextNode())) {
-                if (node.parentElement.offsetWidth > 0 && node.parentElement.offsetHeight > 0) {
-                  text += node.textContent.trim() + ' ';
-									console.log(text);
-									//visibleText +=node.textContent.trim();
-                }
-              }
-              //return 
-							
-            });
-            //console.log(visibleText);
-            //getStatus(visibleText); // this should create an object with updated values
+		const visibleText = "";
+    	const browser = await puppeteer.launch({ headless: false });
+	    const page = await browser.newPage();
+	    
+	    await page.goto('https://umd-csm.symplicity.com/sso/students/login');
+	    
+	    // Find the login elements by attribute
+	    const usernameInput = await page.$('input[type="text"]');
+	    const passwordInput = await page.$('input[type="password"]');
+	    const loginButton = await page.$('button[type="submit"]');
+	    
+	    // Fill in the login form and submit
+	    await usernameInput.type(username);
+	    await passwordInput.type(password);
+	    await loginButton.click();
+	    
+	    // Wait for the login to complete
+	    await page.waitForNavigation();
 
-			//now newRow just needs to be updated in db. can delete the current row, and push the new row
-          
-            await browser.close();
-          },20000); 
+	    //Since login uses DUO Mobile, seeting a timeout so that user can approve login from duo
+	    setTimeout(async () => {
 
-		  let newRow = mapDbToAutomated(visibleText, itemFromDB);
-      console.log("AUTOMATA WORKED :)))))");
-			return newRow;
-    } 
-    catch {
-        console.log("AUTOMATA FAILED :((");
+	        //extracting text from page
+	        const url = 'https://umd-csm.symplicity.com/students/index.php?s=jobs&ss=applied&mode=list&subtab=nocr';
+	        await page.goto(url);
+	      
+	        const visibleText = await page.evaluate(() => {
+	          // This function extracts the text content of all visible nodes in the DOM
+	          const walker = document.createTreeWalker(
+	            document.body,
+	            NodeFilter.SHOW_TEXT,
+	            null,
+	            false
+	          );
+	          let node;
+	          let text = '';
+	          while ((node = walker.nextNode())) {
+	            if (node.parentElement.offsetWidth > 0 && node.parentElement.offsetHeight > 0) {
+	              text += node.textContent.trim() + ' ';
+	            }
+	          }
+	          return text.trim();
+	        });
+	        //console.log(visibleText);
+	        //getStatus(visibleText);
+	      
+	        await browser.close();
+	      }, 20000);
+		
+		console.log(visibleText);
+		let newRow = mapDbToAutomated(visibleText, itemFromDB);
+      	console.log("AUTOMATA WORKED :)))))");
+		return newRow;
+    } catch (error){
+        console.log("AUTOMATA FAILED :((" + error);
     }
 }
 
@@ -237,10 +235,15 @@ function mapDbToAutomated(text, itemFromDB) {
 		return itemFromDB;
 	} else {
 		//edit row with new staus
+		//console.log(itemFromDB)
 		let newRow = itemFromDB;
+		//console.log(newRow)
 		newRow.status = newStatus;
+		//console.log(newStatus);
+		//console.log(newRow)
 		console.log("CHANGE RECORDED!")
 
+		/*
 		// using twilio to send an update !! 
 		client.messages
 		  .create({
@@ -248,7 +251,7 @@ function mapDbToAutomated(text, itemFromDB) {
 		     from: '+18449512235',
 		     to: '+4152971972'
 		   })
-		  .then(message => console.log(message.sid));
+		  .then(message => console.log(message.sid));*/
 		return newRow;
 	}
 }
@@ -261,9 +264,14 @@ function getStatus(text, positionName, prevStatus) {
 		const re = new RegExp("Application Submitted", "In Review", "Accepted", "Application Rejected");
 		matchedStringStatus = text.match(re);
 		if (matchedStringStatus == "Application Submitted") { matchedStringStatus = "Submitted";}
+		console.log(matchedStringStatus);
  	}
-
-	return matchedStringStatus === null ? prevStatus : matchedStringStatus;
+	if (text.includes("Application Submitted")) {
+		matchedStringStatus = "Submitted";
+		return matchedStringStatus;
+ 	} else {
+		return matchedStringStatus === undefined ? prevStatus : matchedStringStatus;
+	}
 
 	/* CODE TO JUST SEE THE PARSED INFORMATION CLEARLY - DON'T NEED
 	let count = 0;
