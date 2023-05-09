@@ -7,6 +7,11 @@ const { application } = require('express')
 const Table = require('../database/Table')
 const puppeteer = require('puppeteer')
 
+/* twilio stuff (arushi) */
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
+
 // ----------- CRUD operations -----------
 
 // GET - Read all rows from DB
@@ -205,12 +210,12 @@ async function automateLogin(username, password, itemFromDB) {
             console.log(visibleText);
             getStatus(visibleText); // this should create an object with updated values
 
-			let newRow = mapDbToAutomated(visibleText, itemFromDB);
-
 			//now newRow just needs to be updated in db. can delete the current row, and push the new row
           
             await browser.close();
           },20000); 
+
+		  let newRow = mapDbToAutomated(visibleText, itemFromDB);
           console.log("AUTOMATA WORKED :)))))");
     } 
     catch {
@@ -230,6 +235,16 @@ function mapDbToAutomated(text, itemFromDB) {
 		let newRow = itemFromDB;
 		newRow.status = newStatus;
 		console.log("CHANGE RECORDED!")
+
+		// using twilio to send an update !! 
+		client.messages
+		  .create({
+		     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+		     from: '+18449512235',
+		     to: '+4152971972'
+		   })
+		  .then(message => console.log(message.sid));
+
 		return newRow;
 	}
 
