@@ -7,7 +7,7 @@ const anchors = document.querySelectorAll('header ul li a')
 //const scrollBar = document.querySelector('.containerBar')
 
 const enableDark = () => {
-	body.style.background = 'black'
+	body.style.background = '#181a1b'
 	body.style.color = 'white'
 	body.style.transition = '2s'
 	localStorage.setItem('theme', 'dark')

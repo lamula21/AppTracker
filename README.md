@@ -52,7 +52,7 @@
 
 ## 🦸🏻‍♂️ Inspiration
 
-Are you tired of looking over the list of places/companies you've applied to and tired of searching thourugh each and every one every time you get an update? Don't you wish there was a more efficient way to store the information about all the applications you submitted and that you didn't have to log in to a different WorkDay page to check the status of each of your applications every once in a while just waiting for updates?
+Are you tired of looking over the list of places/companies you've applied to and tired of searching each one every time you get an update? Don't you wish there was a more efficient way to store information about all the applications you submitted and that you didn't have to log in to a different WorkDay page to check the status of each of your applications every once in a while just waiting for updates?
 <br/>
 <br/>
 
@@ -64,7 +64,7 @@ We are trying to automate the process of checking for updates on submitted inter
 
 ## 🔨 How we built it?
 
-We used HTML/CSS/JavaScript to build the main page of the appplication where all the data is entered and stored. We used Selenium (it's a software that automates browsers) to get to the webpage/webpages entered by the user and we used BeautifulSoup to extract text from the webpage. We integrated Twilio into our code so that the user gets an SMS update each time something (i.e., the status of an application) gets updated. We connected it all to the back-end Python script that runs the Selenium and Twilio code when required.
+We used HTML/CSS/JavaScript to build the main page of the appplication where all the data is entered and stored. We used Puppeeter (an API software that automates browsers) to get to the webpage/webpages entered by the user to extract text from the webpage. We integrated Twilio into our code so that the user gets an SMS update each time something (i.e., the status of an application) gets updated. We connected it all to the back-end with MongoDB, ExpressJS, React, NodeJS that runs the Puppeeter and Twilio code when required.
 <br/>
 <br/>
 
@@ -82,22 +82,25 @@ We're proud that we were able to integrate different kinds of software into our 
 
 ## 📖 What we learned
 
-Learnt the basics of Selenium, Twilio and how to host webpages on an Apache server.
+Learned the basics of Puppeeter, Twilio and how to deploy our WebApp on a server such as Render.com.
 <br/>
 <br/>
 
 ## ➡️ What's next for AppTracker
 
-We want to expand it to parse actual applications becuase this is a software that we would use. We also want to improve efficiency for large datasets since the current version does not really handle that. We also want to integrate it with other websites or make it a Google Chrome extension at some point.
+We want to expand it to parse actual applications because this is a software that we would use. We also want to improve efficiency for large datasets since the current version does not really handle that. We also want to integrate it with other websites or make it a Google Chrome extension at some point.
 
 ## ⚙️ Built With
--   [apache](https://devpost.com/software/built-with/apache)
--   [css](https://devpost.com/software/built-with/css)
+-   [MongoDB]()
+-   [NodeJS]()
+-   [ExpressJS]()
+-   [Bootstrap]()
+-   [EmailJS]()
+-   [css]()
 -   [html](https://devpost.com/software/built-with/html)
 -   [javascript](https://devpost.com/software/built-with/javascript)
--   [python](https://devpost.com/software/built-with/python)
--   [selenium](https://devpost.com/software/built-with/selenium)
--   [twilio](https://devpost.com/software/built-with/twilio)
+-   [Puppeeter](https://devpost.com/software/built-with/selenium)
+-   [Twilio](https://devpost.com/software/built-with/twilio)
 
 
 <!-- Badges: https://shields.io/ -- >
