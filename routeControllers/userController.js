@@ -168,7 +168,7 @@ const automata = async (req, res) => {
 
 async function automateLogin(username, password, itemFromDB) {
     try {
-		const visibleText = "";
+		let visibleText = "";
     	const browser = await puppeteer.launch({ headless: false });
 	    const page = await browser.newPage();
 	    
@@ -188,13 +188,12 @@ async function automateLogin(username, password, itemFromDB) {
 	    await page.waitForNavigation();
 
 	    //Since login uses DUO Mobile, seeting a timeout so that user can approve login from duo
-	    setTimeout(async () => {
-
+    	setTimeout(async () => {
 	        //extracting text from page
 	        const url = 'https://umd-csm.symplicity.com/students/index.php?s=jobs&ss=applied&mode=list&subtab=nocr';
 	        await page.goto(url);
 	      
-	        const visibleText = await page.evaluate(() => {
+	        visibleText = await page.evaluate(() => {
 	          // This function extracts the text content of all visible nodes in the DOM
 	          const walker = document.createTreeWalker(
 	            document.body,
@@ -211,14 +210,14 @@ async function automateLogin(username, password, itemFromDB) {
 	          }
 	          return text.trim();
 	        });
-	        //console.log(visibleText);
+	        console.log(visibleText);
 	        //getStatus(visibleText);
 	      
-	        await browser.close();
-	      }, 20000);
+        await browser.close();
+      }, 20000);
 		
-		console.log(visibleText);
-		let newRow = mapDbToAutomated(visibleText, itemFromDB);
+		console.log("VISIBLE TEXT : " + visibleText);
+		let newRow = await mapDbToAutomated(visibleText, itemFromDB);
       	console.log("AUTOMATA WORKED :)))))");
 		return newRow;
     } catch (error){
@@ -230,7 +229,7 @@ function mapDbToAutomated(text, itemFromDB) {
 	let oldStatus = itemFromDB.status;
 	let newStatus = getStatus(text, itemFromDB.positionName, oldStatus);
 
-	if (oldStatus == newStatus) {
+	if (oldStatus === newStatus) {
 		console.log("NO CHANGES WERE RECORDED")
 		return itemFromDB;
 	} else {
@@ -258,6 +257,7 @@ function mapDbToAutomated(text, itemFromDB) {
 
 function getStatus(text, positionName, prevStatus) {
     text = text.trim();
+	console.log("HEREERER" + text);
 	let matchedStringStatus;
 	if (text.includes(positionName)) {
 		//very basic regex but will work for now
