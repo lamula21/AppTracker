@@ -8,11 +8,12 @@
    <img height="250" src="https://github.com/lamula21/AppTracker/blob/main/Assets/mern.gif">
   </a>
   
-  <h1>AppTracker</h1>
+  <h1><a href="https://apptracker.onrender.com/">AppTracker</a></h1>
 
  <p align="center">
 	Automates the process to check for updates on internship applications. <br/>
-	 🎉<i>A pretty nice way to store your information</i>🎉
+	 🎉<i>A pretty nice way to store your information</i>🎉 <br/>
+   Try our demo: https://apptracker.onrender.com/
  </p>
 
   <sup>Click :star: if you liked the project.</sup>
