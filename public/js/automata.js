@@ -1,6 +1,6 @@
 //const puppeteer = require('puppeteer')
 // reqired for automata
-//const trElements = document.querySelectorAll('tr');
+const trElements = document.querySelectorAll('tr');
 const idsArray = [];
 
 /*
