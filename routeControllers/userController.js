@@ -221,7 +221,7 @@ const exportTable = async (req, res) => {
 									<td>${each.status}</td>
 									<td>${each.link}</td>
 									<td>${each.date}</td>
-									<td>${each.locations}</td>
+									<td>${each.location}</td>
 									<td>${each.notes}</td>
 								</tr>
 								`
