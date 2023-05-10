@@ -10,13 +10,11 @@ const tableSchema = new Schema({
 
 	company: {
 		type: String,
-		index: true,
 		required: true,
 	},
 
 	title: {
 		type: String,
-		index: true,
 		required: true,
 	},
 
@@ -32,13 +30,11 @@ const tableSchema = new Schema({
 
 	location: {
 		type: String,
-		index: true,
 		required: true,
 	},
 
 	status: {
 		type: String,
-		index: true,
 		required: true,
 	},
 

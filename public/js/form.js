@@ -266,7 +266,7 @@ async function saveAndDelete(rowID) {
 		closeForm()
 
 	} catch (error) { // catch errors from DB methods
-		const json = await response.json()
+
 		// If any error, create and display div-alert	
 		const alertContainer = document.querySelector('alert-container')
 		alertContainer.innerHTML = `            
@@ -275,7 +275,40 @@ async function saveAndDelete(rowID) {
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
-			${json.error}
+			${error}
 		</div>`
 	}	
+}
+
+async function export_table() {
+	const url = `https://apptracker.onrender.com/user/api/export/1`
+	try {
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+
+		const json = await response.json()
+
+		alertContainer.innerHTML = `            
+		<div class="alert alert-success" role="alert">
+			<i class="bi bi-check-circle"></i>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			${json.msg}
+		</div>`
+
+	} catch (error) {
+		alertContainer.innerHTML = `            
+		<div class="alert alert-danger" role="alert">
+			<i class="bi bi-check-circle"></i>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			Ups! We couldnt export it. Server is down ☹️
+		</div>`
+	}
 }

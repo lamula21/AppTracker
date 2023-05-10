@@ -13,7 +13,7 @@
 
 
 const express = require('express')
-const { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow, getEvent, addEvent } = require('../routeControllers/userController')
+const { readRows, addRow, fetchRow, editRow, deleteRow, getEvent, addEvent, exportTable } = require('../routeControllers/userController')
 const router = express.Router()
 
 const loginValidator = require('../middlewares/loginValidation')
@@ -35,9 +35,6 @@ router.get('/calendar', loginValidator, (req, res) => {
 // localhost:5001/user/api/:id
 router.get('/api/:id', fetchRow)
 
-// localhost:5001/user/api/v2
-router.get('/api/v2', fetchRows)
-
 // localhost:5001/user/api/edit/:id
 router.put('/api/edit/:id', editRow)
 
@@ -50,5 +47,9 @@ router.get('/api/event/:id', getEvent)
 // localhost:5001/user/api/event
 router.post('/api/event', addEvent)
 
+// localhost:5001/user/api/export
+router.post('/api/export/:id', exportTable)
+
 
 module.exports = router
+

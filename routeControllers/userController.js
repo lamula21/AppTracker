@@ -3,8 +3,18 @@
 //   - req.user.id, 
 //   - req.user.username
 
+//Export
+const nodemailer = require('nodemailer')
+const {google} = require('googleapis')
+const CLIENT_ID = process.env.CLIENT_ID
+const CLIENT_SECRET = process.env.CLIENT_SECRET
+const REDIRECT_URI = process.env.REDIRECT_URI
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN
+
+
 const Table = require('../database/Table')
 const Event = require('../database/Event')
+const User = require('../database/User')
 // ----------- CRUD operations -----------
 
 // GET - Read all rows from DB
@@ -37,22 +47,6 @@ const fetchRow = async (req, res) => {
 	} catch (error) {
 		return res.status('404')
 	}
-	
-}
-
-// GET - ALL ROWS FROM USER (ON WORK)
-const fetchRows = async (req, res) => {
-	// try {
-	// 	const {id} = req.params
-	// 	const row = await Table.findById(id)
-	// 	// lean() -> formatted js object
-	// 	// -> {company: _ , title: _, link: _, id: _, etc}
-	// 	// -> {company: _ , title: _, link: _, id: _, etc}
-	// 	// ...
-	// 	res.json(row) // send data to be consumed by a fetch
-	// } catch (error) {
-	// 	return res.status('404')
-	// }
 	
 }
 
@@ -167,5 +161,85 @@ const addEvent = async (req, res) => {
 	}
 }
 
+async function sendMail(table, userEmail) {
+	try {
+		const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+		oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+        const accessToken = await oAuth2Client.getAccessToken();
 
-module.exports = { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow, getEvent, addEvent}
+        const transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user: 'jeij98268@gmail.com',
+                clientId: CLIENT_ID,
+                clientSecret: CLIENT_SECRET,
+                refreshToken: REFRESH_TOKEN,
+                accessToken: accessToken
+            }
+        })
+
+        const mailOptions = {
+            from: 'AppTracker <no-reply@apptracker.onrender.com>',
+            to: userEmail,
+            subject: 'Export Data from AppTracker',
+            text: 'Error!',
+            html: table
+        };
+
+        const result = await transport.sendMail(mailOptions);
+
+        return result;
+    } catch (e) {
+        return e;
+    }
+}
+
+const exportTable = async (req, res) => {
+	let table = `<table border="1">
+							<thead>
+								<tr>
+									<th>Company Name</th>
+									<th>Title</th>
+									<th>Status</th>
+									<th>Link</th>
+									<th>Date</th>
+									<th>Location</th>
+									<th>Notes</th>
+								</tr>
+							</thead>
+							<tbody>`;
+
+	try {
+		const userRows = await Table.find({user: req.user.id})
+		const user = await User.findById( req.user.id )
+
+		userRows.forEach( each => {
+			table += `<tr>
+									<td>${each.company}</td>
+									<td>${each.title}</td>
+									<td>${each.status}</td>
+									<td>${each.link}</td>
+									<td>${each.date}</td>
+									<td>${each.locations}</td>
+									<td>${each.notes}</td>
+								</tr>
+								`
+		})
+
+		table += `</tbody></table>`
+
+		sendMail(table, user.email)
+			.then(result => console.log('Email send...', result))
+			.catch(error => console.log(error.message))
+		
+		return res.json({msg:'Your table was exported. Check your email 😀'})
+
+
+	} catch (error) {
+		req.flash('warning', 'We couldnt export 👎')
+		return res.redirect('/user/dashboard')
+	}
+}
+
+module.exports = { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow, getEvent, addEvent, exportTable}
