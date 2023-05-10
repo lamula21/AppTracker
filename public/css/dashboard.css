@@ -94,11 +94,20 @@ body {
 	z-index: 9998;
 }
 
-
+/* main table css */
 #div-card-table{
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	padding-top: 20px;
 	padding-right: 20px;
 	padding-bottom: 20px;
 	padding-left: 20px;
+}
+td#td-link p {
+	max-width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+td#td-notes p {
+	max-width: 290px;
 }
