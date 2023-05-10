@@ -48,7 +48,7 @@ router.get('/api/event/:id', getEvent)
 router.post('/api/event', addEvent)
 
 // localhost:5001/user/api/export
-router.post('/api/export/:id', exportTable)
+router.get('/api/export/:id', exportTable)
 
 
 module.exports = router
