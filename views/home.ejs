@@ -176,6 +176,17 @@
 				const mainContainer = document.querySelector('#main-container');
 				mainContainer.scrollIntoView({ behavior: 'smooth' }); // scroll to the main-container div
 			});
+
+			window.onload = function() {
+				// get the element with the ID "my-section"
+				const element = document.querySelector("#intro");
+
+				// calculate the offset from the top of the page to the element
+				const offset = element.offsetTop;
+
+				// scroll the page to the element
+				window.scrollTo(0, offset);
+			};
 		</script>
 
 	<!-- lottie files script -->
