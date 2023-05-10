@@ -242,4 +242,4 @@ const exportTable = async (req, res) => {
 	}
 }
 
-module.exports = { readRows, addRow, fetchRow, fetchRows, editRow, deleteRow, getEvent, addEvent, exportTable}
+module.exports = { readRows, addRow, fetchRow, editRow, deleteRow, getEvent, addEvent, exportTable}
