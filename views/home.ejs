@@ -170,14 +170,16 @@
 		</script>
 
 		<!-- button script redirect -->
-		<script>
+		<script defer>
 			document.querySelector('#readme').addEventListener('click', function(e) {
 				e.preventDefault(); // prevent default behavior of the button click event
 				const mainContainer = document.querySelector('#main-container');
 				mainContainer.scrollIntoView({ behavior: 'smooth' }); // scroll to the main-container div
 			});
+		</script>
 
-			window.onload = function() {
+		<script defer>
+				window.onload = function() {
 				// get the element with the ID "my-section"
 				const element = document.querySelector("#intro");
 
@@ -188,9 +190,6 @@
 				window.scrollTo(0, offset);
 			};
 		</script>
-
-	<!-- lottie files script -->
-	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 	</body>
 
